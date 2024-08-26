@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 <project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-=======
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
->>>>>>> 716bcffd50fc86f83b773ba2fdfe48d3c94ec8ae
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>TutorialsNinjaWebApp</groupId>
   <artifactId>TutorialsNinjaWebApp</artifactId>
@@ -10,20 +8,13 @@
 
 <dependencies>
 	
-<<<<<<< HEAD
 <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
     <version>4.23.0</version>
-=======
-	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-<dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-java</artifactId>
-    <version>4.22.0</version>
->>>>>>> 716bcffd50fc86f83b773ba2fdfe48d3c94ec8ae
 </dependency>
+	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 
 <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 <dependency>

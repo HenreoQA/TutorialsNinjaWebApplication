@@ -1,15 +1,16 @@
 package search_functionality;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.time.Duration;
 
-public class TC_SF_001 {
+public class TC_SF_004 {
 
-    public static void main(String[] args) {
-        
+	 public static void main(String[] args) {
+	        
     	 WebDriver driver=new ChromeDriver(); //Launch chrome browser
          
          // WebDriver driver = new EdgeDriver();
@@ -21,6 +22,13 @@ public class TC_SF_001 {
             // Open the Application URL
             driver.get("http://tutorialsninja.com/demo");
             driver.manage().window().maximize(); // Maximize the browser window
+            
+            //Login to the Application
+            driver.findElement(By.xpath("//span[@class='caret']")).click();
+            driver.findElement(By.xpath("//a[text()='Login']")).click();
+            driver.findElement(By.xpath("//input[@id='input-email']")).sendKeys("automationninja@gmail.com");
+            driver.findElement(By.xpath("//input[@id='input-password']")).sendKeys("Password123");
+            driver.findElement(By.xpath("//input[@value='Login']")).click();
 
             // Enter the existing product name into the 'Search' text box
             WebElement searchBox = driver.findElement(By.name("search"));
@@ -47,3 +55,4 @@ public class TC_SF_001 {
         }
     }
 }
+

@@ -8,7 +8,6 @@ package forgotten_password;
 	import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 	  public class TC_FP_005 {
 
