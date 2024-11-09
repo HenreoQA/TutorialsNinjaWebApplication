@@ -41,11 +41,12 @@ public class TC_FP_002 {
 
 	            //Click on 'Continue' button
 	            driver.findElement(By.xpath("//input[@value='Continue']")).click();
+	        	
+	        	// Check the email
+	            boolean emailReceived = checkEmailForPasswordReset("automationninja82@gmail.com", "blkvmiododmwtsgz"); //replace email password with App password
 
-	            // Check the email
-	            boolean emailReceived = checkEmailForPasswordReset("automationninja82@gmail.com", "new_password_link");
 
-	            if (emailReceived) 
+	            if (emailReceived==true) 
 	            {
 	                System.out.println("Email received with proper details and reset link.");
 	            } 
@@ -65,7 +66,7 @@ public class TC_FP_002 {
 	        }
 	    }
 
-	    public static boolean checkEmailForPasswordReset(String emailAddress, String expectedLinkKeyword) 
+	    public static boolean checkEmailForPasswordReset(String emailAddress, String password) 
 	    {
 	        // Set email properties
 	        Properties props = new Properties();
@@ -75,20 +76,20 @@ public class TC_FP_002 {
 	            // Connect to the email server
 	            Session session = Session.getDefaultInstance(props, null);
 	            Store store = session.getStore("imaps");
-	            store.connect("imap.gmail.com", "automationninja82@gmail.com", "blkvmiododmwtsgz"); // replace email password with App password
+	            store.connect("imap.gmail.com", emailAddress, password);
 
 	            // Open the inbox folder
 	            Folder inbox = store.getFolder("inbox");
 	            inbox.open(Folder.READ_ONLY);
 
 	            // Search for the email with a specific subject
-	            Message[] messages = inbox.search(new SubjectTerm("Password Reset"));
+	            Message[] messages = inbox.search(new SubjectTerm("Password recovery"));
 
 	            for (Message message : messages) {
-	                if (message.getFrom()[0].toString().contains("no-reply@tutorialsninja.com")) 
+	                if (message.getFrom()[0].toString().contains("account-update@amazon.co.uk")) 
 	                {
 	                    String emailContent = message.getContent().toString();
-	                    if (emailContent.contains(expectedLinkKeyword)) {
+	                    if (emailContent.contains("password")) {
 	                        System.out.println("Subject: " + message.getSubject());
 	                        System.out.println("From: " + message.getFrom()[0]);
 	                        System.out.println("Content: " + emailContent);

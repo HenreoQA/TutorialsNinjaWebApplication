@@ -35,7 +35,7 @@ public class TC_RF_015
             resultSet = statement.executeQuery(query);
 
             // Verify the user details
-            if (resultSet.next()) 
+            if (resultSet.next())  // itereate over the rows in a resultset or Checks if there is at least one row
             {
                 String firstName = resultSet.getString("firstname");
                 String lastName = resultSet.getString("lastname");

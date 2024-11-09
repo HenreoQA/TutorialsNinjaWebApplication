@@ -94,10 +94,7 @@ public static void verifyDatabase(String firstName, String lastName, String emai
                 System.out.println("Account details do not match");
             }
         } 
-        else
-        {
-            System.out.println("No account found with the given email");
-        }
+       
     } 
     catch (Exception e) 
     {

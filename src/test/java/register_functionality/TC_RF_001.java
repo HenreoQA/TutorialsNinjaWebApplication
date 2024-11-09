@@ -1,11 +1,13 @@
 package register_functionality;
 
 import java.time.Duration;
+import java.util.Date;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -14,6 +16,11 @@ public class TC_RF_001  {
 	public static void main(String[] args) 
 	{
 		
+        // Running the test on incognito mode
+       // ChromeOptions Options = new ChromeOptions();
+       // Options.addArguments("--incognito");
+		// WebDriver driver=new ChromeDriver(Options)
+        
         WebDriver driver=new ChromeDriver(); //Launch chrome browser
        
        // WebDriver driver = new EdgeDriver();
@@ -38,7 +45,7 @@ public class TC_RF_001  {
             // Enter new Account Details into the Mandatory Fields
             driver.findElement(By.xpath("//input[@id='input-firstname']")).sendKeys("Henry");
             driver.findElement(By.xpath("//input[@id='input-lastname']")).sendKeys("Agulanna");
-            driver.findElement(By.xpath("//input[@id='input-email']")).sendKeys("automationninja82@gmail.com");
+            driver.findElement(By.xpath("//input[@id='input-email']")).sendKeys(generateEmail());
             driver.findElement(By.xpath("//input[@id='input-telephone']")).sendKeys("01234567890");
             driver.findElement(By.xpath("//input[@id='input-password']")).sendKeys("Password123");
             driver.findElement(By.xpath("//input[@id='input-confirm']")).sendKeys("Password123");
@@ -93,6 +100,12 @@ public class TC_RF_001  {
            
     }
 		
+	// Using Timestamp to generate random email
+	public static String generateEmail() 
+	{
+		return new Date().toString().replaceAll("\\s","").replaceAll("\\:","")+"@gmail.com";
+	}
+
 
 		
 }

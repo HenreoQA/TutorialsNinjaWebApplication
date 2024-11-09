@@ -42,11 +42,11 @@ public class TC_RF_002
             // Step 3: Enter new Account Details
              driver.findElement(By.xpath("//input[@id='input-firstname']")).sendKeys("Henry");
              driver.findElement(By.xpath("//input[@id='input-lastname']")).sendKeys("Agulanna");
-            String email = "automationninja82@gmail.com";
+            String email = "testerpro@gmail.com";
             driver.findElement(By.xpath("//input[@id='input-email']")).sendKeys(email);
             driver.findElement(By.xpath("//input[@id='input-telephone']")).sendKeys("01234567890");
-            driver.findElement(By.xpath("//input[@id='input-password']")).sendKeys("Password123");
-            driver.findElement(By.xpath("//input[@id='input-confirm']")).sendKeys("Password123");
+            driver.findElement(By.xpath("//input[@id='input-password']")).sendKeys("test@1234");
+            driver.findElement(By.xpath("//input[@id='input-confirm']")).sendKeys("test@1234");
             driver.findElement(By.xpath("//input[@name='agree']")).click();
 
             // Step 4: Click on 'Continue' button
@@ -65,8 +65,10 @@ public class TC_RF_002
             driver.quit();
         }
     }
+	
+	
 
-    private static void verifyEmail(String email) 
+    public static void verifyEmail(String email) 
     {
         try {
             // Mail server connection properties

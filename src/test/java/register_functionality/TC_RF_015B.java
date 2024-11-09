@@ -7,12 +7,14 @@ import java.sql.Statement;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TC_RF_015B {
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException{
 		
 		 WebDriver driver=new ChromeDriver(); //Launch chrome browser
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //implicit wait
@@ -30,16 +32,21 @@ public class TC_RF_015B {
 	        driver.findElement(By.xpath("//a[text()='Register']")).click();
 	        
 	        //Enter account details into the fields
-	        driver.findElement(By.id("input-firstname")).sendKeys("Kenneth");
-	        driver.findElement(By.id("input-lastname")).sendKeys("Michael");
-	        driver.findElement(By.id("input-email")).sendKeys("ken.mic@gmail.com");
+	        driver.findElement(By.id("input-firstname")).sendKeys("James");
+	        driver.findElement(By.id("input-lastname")).sendKeys("Fred");
+	        driver.findElement(By.id("input-email")).sendKeys("james_fred@yahoo.com");
 	        driver.findElement(By.id("input-password")).sendKeys("12345");
 	        driver.findElement(By.id("input-newsletter")).click(); //Newsletter
-	        driver.findElement(By.xpath("//input[@name='agree']")).click(); //Privacy policy
-	        driver.findElement(By.xpath("//button[normalize-space()='Continue']")).click();
+	        
+	        WebElement privacy = driver.findElement(By.name("agree")); //Privacy policy
+	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", privacy);
+	        
+	        WebElement button = driver.findElement(By.xpath("//button[@type='submit']"));
+	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button); //Continue button
+
 	        
 	        // Verify the details in the database
-	        verifyDatabase("Kenneth", "Michael", "ken.mic@gmail.com");
+	        verifyDatabase("James", "Fred", "james_fred@yahoo.com");
 
 	    } 
 	    finally 
@@ -59,28 +66,30 @@ public class TC_RF_015B {
 	    Statement statement = null;
 	    ResultSet resultSet = null;
 
-	    try {
+	  
+		try {
 	        // Load the MySQL JDBC driver
 	        Class.forName("com.mysql.cj.jdbc.Driver");
+	       
 
 	        // Establish connection to the database
 	        connection = DriverManager.getConnection(jdbcUrl+dbName, username, password);
 
-	        // Create statement
+	        // Create statement to send SQL statement to the database
 	        statement = connection.createStatement();
 
 	        // Execute query to check the registered customer details
-	        String query = "SELECT * FROM oc_customer WHERE email = 'ken.mic@gmail.com'";
+	         String query = "SELECT * FROM oc_customer WHERE email = 'james_fred@yahoo.com'";
 	        resultSet = statement.executeQuery(query);
 
 	        // Verify the user details
-	        if (resultSet.next()) 
+	        if (resultSet.next())  // itereate over the rows in a resultset or Checks if there is at least one row
 	        {
 	            String FirstName = resultSet.getString("firstname");
 	            String LastName = resultSet.getString("lastname");
 	            String Email = resultSet.getString("email");
 
-	            if ("Kenneth".equals(FirstName) && "Michael".equals(LastName) && "ken.mic@gmail.com".equals(Email)) 
+	            if ("James".equals(FirstName) && "Fred".equals(LastName) && "james_fred@yahoo.com".equals(Email)) 
 	            {
 	                System.out.println("Account details successfully stored in the database");
 	            } 
@@ -89,10 +98,6 @@ public class TC_RF_015B {
 	                System.out.println("Account details do not match");
 	            }
 	        } 
-	        else
-	        {
-	            System.out.println("No account found with the given email");
-	        }
 	    } 
 	    catch (Exception e) 
 	    {

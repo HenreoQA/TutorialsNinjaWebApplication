@@ -91,7 +91,7 @@ public class TC_RF_003
         } 
 		finally
 		{
-			 // Close the browser - will execute if there is exception or not
+			 // Close the browser
 	           driver.quit();
 	        
 		}
